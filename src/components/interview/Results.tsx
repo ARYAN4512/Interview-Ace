@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import { ScoreGauge } from "./ScoreGauge";
 import { estimateScores, type Role, type ScoreResponse } from "@/lib/interview-data";
 
+function scoreColor(score: number) {
+  if (score >= 80) return "var(--score-high)";
+  if (score >= 65) return "var(--score-mid)";
+  return "var(--score-low)";
+}
+
 export function Results({
   role,
   answers,
@@ -74,7 +80,10 @@ export function Results({
                 <dt className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
                   {label}
                 </dt>
-                <dd className="mt-1 font-display text-2xl tabular-nums">
+                <dd
+                  className="mt-1 font-display text-2xl tabular-nums"
+                  style={{ color: scoreColor(value as number) }}
+                >
                   {Math.round(value as number)}
                 </dd>
               </div>
@@ -99,14 +108,19 @@ export function Results({
             <li key={i} className="rounded-xl border border-border bg-card p-6 shadow-soft">
               <div className="flex items-start justify-between gap-6">
                 <p className="text-sm font-medium leading-relaxed">{role.questions[i]}</p>
-                <span className="font-display text-2xl tabular-nums text-accent">{score}</span>
+                <span
+                  className="font-display text-2xl tabular-nums"
+                  style={{ color: scoreColor(score) }}
+                >
+                  {score}
+                </span>
               </div>
               <div className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-xs text-muted-foreground">
                 <span>Content {result.content_score}</span>
                 <span>Clarity {result.clarity_score}</span>
                 <span>Confidence {result.confidence_score}</span>
               </div>
-              <p className="mt-4 border-l-2 border-accent pl-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 border-l-2 border-border pl-4 text-sm leading-relaxed text-muted-foreground">
                 {result.tip}
               </p>
             </li>
@@ -118,7 +132,10 @@ export function Results({
       <ul className="mt-6 space-y-3">
         {data.overall_tips.map((tip, i) => (
           <li key={i} className="flex gap-4 text-sm leading-relaxed">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+            <span
+              className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground"
+              aria-hidden="true"
+            />
             {tip}
           </li>
         ))}

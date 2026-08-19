@@ -51,7 +51,7 @@ export const ROLES: Role[] = [
 ];
 
 export function getRole(id: RoleId): Role {
-  return ROLES.find((r) => r.id === id) ?? ROLES[0];
+  return ROLES.find((r) => r.id === id) ?? (ROLES[0] as Role);
 }
 
 export type QuestionResult = {

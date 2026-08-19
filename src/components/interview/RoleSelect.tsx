@@ -17,7 +17,7 @@ export function RoleSelect({
       <h1 className="mt-5 max-w-2xl text-4xl leading-[1.05] sm:text-6xl">
         Rehearse out loud.
         <br />
-        <span className="text-accent">Get told the truth.</span>
+        <span className="text-muted-foreground">Get told the truth.</span>
       </h1>
       <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
         Pick a track, answer five questions with your voice, and receive a scored breakdown of your

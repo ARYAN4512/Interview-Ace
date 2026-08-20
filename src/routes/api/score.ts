@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { estimateScores, type ScoreResponse } from "@/lib/interview-data";
 
-const MODEL = "gemini-2.5-flash";
+const MODEL = "gemini-3.6-flash";
 
 function clampScore(n: unknown): number {
   const v = typeof n === "number" ? n : Number(n);
